@@ -17,4 +17,5 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.taskipy.tasks]
+generate_env = "python generate_env.py"
 start_local = "python manage.py runserver 0:8000"
