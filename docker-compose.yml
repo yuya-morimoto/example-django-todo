@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        PYTHON_IMAGE_TAG: "3.11.5"
+        POETRY_VERSION: "1.6.1"
+    image: dj-todo-web
+    container_name: dj-todo-web
+    tty: true
+    volumes:
+      - ./web:/app
+    working_dir: /app
+    ports:
+      - "8000:8000"
+    environment:
+      - READ_DJANGO_ENV_FILE=true
+    command: /bin/bash -c "poetry run task start_local"
