@@ -1,10 +1,28 @@
 version: "3"
 
 services:
+  genenv:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      target: setup
+      args:
+        PYTHON_IMAGE_TAG: "3.11.5"
+        POETRY_VERSION: "1.6.1"
+    tty: true
+    image: genenv
+    container_name: genenv
+    volumes:
+      - ./web:/app
+    working_dir: /app
+    command: /bin/bash -c "poetry run task generate_env"
+    profiles:
+      - setup
   web:
     build:
       context: ./web
       dockerfile: Dockerfile
+      target: local_runner
       args:
         PYTHON_IMAGE_TAG: "3.11.5"
         POETRY_VERSION: "1.6.1"
@@ -19,3 +37,5 @@ services:
     environment:
       - READ_DJANGO_ENV_FILE=true
     command: /bin/bash -c "poetry run task start_local"
+    profiles:
+      - local
