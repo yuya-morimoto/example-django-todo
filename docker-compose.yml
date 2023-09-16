@@ -18,6 +18,7 @@ services:
     command: /bin/bash -c "poetry run task generate_env"
     profiles:
       - setup
+
   web:
     build:
       context: ./web
@@ -36,6 +37,26 @@ services:
       - "8000:8000"
     environment:
       - READ_DJANGO_ENV_FILE=true
-    command: /bin/bash -c "poetry run task start_local"
+    # Run local server command
+    # command: /bin/bash -c "poetry run task start_local"
+    profiles:
+      - local
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+      args:
+        POSTGRESQL_IMAGE_TAG: "16.0-alpine3.18"
+    image: dj-todo-db
+    container_name: dj-todo-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/data:/var/lib/postgresql/data/
+    env_file:
+      - ./db/.env
     profiles:
       - local
