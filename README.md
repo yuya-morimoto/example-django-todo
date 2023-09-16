@@ -15,21 +15,36 @@ Django4.2 example todo application
 
 ```bash
 # or make b
-docker-compose build
+ocker-compose --profile setup build && docker-compose --profile local build
 ```
 
-#### 3. Generate .env
+#### 2. Generate .env
 
 ```bash
 # or make u_setup
 docker-compose --profile setup up --remove-orphans
 ```
 
-#### 2. Up container
+#### 3. Up container
 
 ```bash
 # or make u_local
 docker-compose --profile local up --remove-orphans
+```
+
+### 4. DB migrate & Create super user
+
+```bash
+docker exec -it dj-todo-web /bin/bash -c "poetry run python manage.py migrate"
+
+docker exec -it dj-todo-web /bin/bash -c "poetry run createsuperuser"
+```
+
+### 4. Start local server
+
+```bash
+# or make start_local
+docker exec -it dj-todo-web /bin/bash -c "poetry run task start_local"
 ```
 
 ### Useful links
