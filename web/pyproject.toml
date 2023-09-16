@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-todo"
-version = "0.2.2"
+version = "0.3.0"
 description = "example django todo application"
 authors = ["Yuya Morimoto <yuya-morimoto@zero-hack.jp>"]
 readme = "README.md"
