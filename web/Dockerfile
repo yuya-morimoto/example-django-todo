@@ -1,4 +1,4 @@
-# Base
+########### Base
 ARG PYTHON_IMAGE_TAG
 FROM python:$PYTHON_IMAGE_TAG AS base
 
@@ -11,15 +11,19 @@ WORKDIR /app
 RUN pip install "poetry==$POETRY_VERSION"
 
 COPY pyproject.toml poetry.lock /app/
+
+
+########### Generate SECRET_KEY and .env file
+FROM base AS setup
+
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi
 
-# Generate SECRET_KEY and .env file
-FROM base AS setup
 
-# Local runner
+########### Local runner
 FROM base AS local_runner
 
-EXPOSE 8000
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-ansi
 
-CMD ["poetry", "run", "task", "generate_env"]
+EXPOSE 8000

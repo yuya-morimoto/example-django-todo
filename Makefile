@@ -1,7 +1,8 @@
 h:
 	cat Makefile
 b:
-	docker-compose build
+	docker-compose --profile setup build && \
+	docker-compose --profile local build
 u_setup:
 	docker-compose --profile setup up --remove-orphans
 u_local:
