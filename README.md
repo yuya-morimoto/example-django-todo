@@ -32,7 +32,7 @@ docker-compose --profile setup up --remove-orphans
 docker-compose --profile local up --remove-orphans
 ```
 
-### 4. DB migrate & Create super user
+#### 4. DB migrate & Create super user
 
 ```bash
 docker exec -it dj-todo-web /bin/bash -c "poetry run python manage.py migrate"
@@ -40,7 +40,7 @@ docker exec -it dj-todo-web /bin/bash -c "poetry run python manage.py migrate"
 docker exec -it dj-todo-web /bin/bash -c "poetry run python manage.py createsuperuser"
 ```
 
-### 5. Start local server
+#### 5. Start local server
 
 ```bash
 # or make start_local
