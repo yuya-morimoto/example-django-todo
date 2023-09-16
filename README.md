@@ -40,7 +40,7 @@ docker exec -it dj-todo-web /bin/bash -c "poetry run python manage.py migrate"
 docker exec -it dj-todo-web /bin/bash -c "poetry run createsuperuser"
 ```
 
-### 4. Start local server
+### 5. Start local server
 
 ```bash
 # or make start_local
