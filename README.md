@@ -15,7 +15,7 @@ Django4.2 example todo application
 
 ```bash
 # or make b
-ocker-compose --profile setup build && docker-compose --profile local build
+docker-compose --profile setup build && docker-compose --profile local build
 ```
 
 #### 2. Generate .env
