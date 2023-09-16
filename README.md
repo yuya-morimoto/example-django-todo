@@ -37,7 +37,7 @@ docker-compose --profile local up --remove-orphans
 ```bash
 docker exec -it dj-todo-web /bin/bash -c "poetry run python manage.py migrate"
 
-docker exec -it dj-todo-web /bin/bash -c "poetry run createsuperuser"
+docker exec -it dj-todo-web /bin/bash -c "poetry run python manage.py createsuperuser"
 ```
 
 ### 5. Start local server
