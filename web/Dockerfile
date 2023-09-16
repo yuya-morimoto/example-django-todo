@@ -14,14 +14,14 @@ COPY pyproject.toml poetry.lock /app/
 
 
 ########### Generate SECRET_KEY and .env file
-FROM base AS setup
+FROM base AS base_setup
 
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi
 
 
-########### Local runner
-FROM base AS local_runner
+########### Local base
+FROM base AS base_local
 
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi
