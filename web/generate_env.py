@@ -22,12 +22,10 @@ def generate_env() -> None:
             f"SECRET_KEY={secret_key}\n",
             "\n",
             "# Database\n",
-            "DATABASE=postgres\n",
-            "DB_ENGINE=django.db.backends.postgresql\n",
-            "DB_NAME=user\n",
-            "DB_USER=db\n",
+            "DB_NAME=db\n",
+            "DB_USER=admin\n",
             "DB_PASSWORD=password\n",
-            "DB_HOST=db\n",
+            "DB_HOST=dj-todo-db\n",
             "DB_PORT=5432",
         ]
         with open(".env", mode="w", newline="\n") as f:
