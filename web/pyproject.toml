@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-todo"
-version = "0.2.0"
+version = "0.1.0"
 description = "example django todo application"
 authors = ["Yuya Morimoto <yuya-morimoto@zero-hack.jp>"]
 readme = "README.md"
@@ -10,12 +10,26 @@ python = "^3.11"
 django = "4.2.5"
 taskipy = "^1.12.0"
 django-environ = "^0.11.2"
+psycopg2 = "^2.9.7"
 
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+pyproject-flake8 = "^6.0.0.post1"
+isort = "^5.12.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.black]
+line-length = 120
+
+[tool.flake8]
+max-line-length = 120
+
 [tool.taskipy.tasks]
 generate_env = "python generate_env.py"
 start_local = "python manage.py runserver 0:8000"
+format = "isort . && black ."
+lint = "pflake8"
