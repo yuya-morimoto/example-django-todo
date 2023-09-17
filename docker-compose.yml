@@ -43,6 +43,7 @@ services:
       - local
     depends_on:
       - db
+      - redis
 
   db:
     build:
@@ -60,3 +61,19 @@ services:
       - ./db/.env
     profiles:
       - local
+
+  redis:
+    build:
+      context: ./cache
+      dockerfile: Dockerfile
+      args:
+        REDIS_IMAGE_TAG: "alpine3.18"
+    image: dj-todo-redis
+    container_name: dj-todo-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./cache/data:/data
+    profiles:
+      - local
+    tty: true
