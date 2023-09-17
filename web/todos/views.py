@@ -1,5 +1,6 @@
-from django.http import HttpRequest, HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    return HttpResponse("Hello, world. You're at the polls index.")
+class IndexView(LoginRequiredMixin, TemplateView):
+    template_name = "todos/index.html"
