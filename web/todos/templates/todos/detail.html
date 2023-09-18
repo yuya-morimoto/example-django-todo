@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    DetailTodo
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Detail Todo</h1>
+        <p>{{todo.pk}}</p>
+        <p>{{todo.title}}</p>
+        <p>{{todo.description}}</p>
+        <p>{{todo.get_status_display}}</p>
+        <p>{{todo.created_at}} (UTC)</p>
+        <button type="button" onclick="history.back()">Back</button>
+    </div>
+{% endblock %}

@@ -5,9 +5,9 @@ from django.db import models
 
 
 class StatusChoices(models.TextChoices):
-    TODO = "01", "TODO"
-    DOING = "02", "DOING"
-    DONE = "03", "DONE"
+    TODO = "01", "Todo"
+    DOING = "02", "Doing"
+    DONE = "03", "Done"
 
 
 class Todo(models.Model):
