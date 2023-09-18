@@ -12,6 +12,9 @@
         <p>{{todo.description}}</p>
         <p>{{todo.get_status_display}}</p>
         <p>{{todo.created_at}} (UTC)</p>
+        <form method="DELETE">
+            <button type="submit">Delete</button>
+        </form>
         <button type="button" onclick="history.back()">Back</button>
     </div>
 {% endblock %}

@@ -1,47 +1,34 @@
-from typing import Any
-from uuid import UUID
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import AnonymousUser
+from django.db.models import QuerySet
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView as BaseCreateView
-from django.views.generic import TemplateView
+from django.views.generic import CreateView, DetailView, ListView
 
 from .forms import TodoForm
 from .models import Todo
 
 
-class IndexView(LoginRequiredMixin, TemplateView):
+class IndexView(LoginRequiredMixin, ListView):
     template_name = "todos/index.html"
+    context_object_name = "todo_list"
+    model = Todo
 
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
+    def get_queryset(self) -> QuerySet[Todo]:
         user = self.request.user
         if isinstance(user, AnonymousUser):
-            context["todos"] = []
+            return Todo.objects.none()
         else:
-            context["todos"] = Todo.objects.filter(user=user)
-        return context
+            return Todo.objects.filter(user=user)
 
 
-class DetailView(LoginRequiredMixin, TemplateView):
+class TodoDetailView(LoginRequiredMixin, DetailView):
     template_name = "todos/detail.html"
-
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-        user = self.request.user
-        todo_id: UUID = self.kwargs.get("todo_id")
-        if isinstance(user, AnonymousUser):
-            context["todo"] = []
-        else:
-            todo: Todo = get_object_or_404(Todo, pk=todo_id, user=user)
-            context["todo"] = todo
-        return context
+    context_object_name = "todo"
+    model = Todo
 
 
-class CreateView(LoginRequiredMixin, BaseCreateView):
+class TodoCreateView(LoginRequiredMixin, CreateView):
     form_class = TodoForm
     template_name = "todos/create.html"
     success_url = reverse_lazy("todos:index")
