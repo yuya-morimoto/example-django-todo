@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Todo|Delete
+{% endblock %}
+
+{% block content %}
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            <p>Are you sure you want to permanently delete this Todo({{todo.pk}})</p>
+            <input type="submit" value="Delete">
+        </form>
+        <button type="button" onclick="history.back()">Back</button>
+    </div>
+{% endblock %}

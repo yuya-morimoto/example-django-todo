@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Todo|List
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>TodoList Page</h1>
+        <a href="{% url 'todos:create' %}">create</a>
+        {% for todo in todo_list %}
+            <p>{{todo.user.username}}</p>
+            <p>{{todo.title}}:{{todo.get_status_display}}</p>
+            <p>{{todo.status}}</p>
+            <a href="{% url 'todos:detail' todo.pk %}">detail</a>
+        {% endfor %}
+    </div>
+{% endblock %}
