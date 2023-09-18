@@ -6,17 +6,10 @@
 
 {% block content %}
     <div>
-        <h1>Delete Todo</h1>
         <form method="POST">
             {% csrf_token %}
-            {{ form.non_field_errors }}
-            {% for field in form %}
-                {{ field.label }}
-                {{ field }}
-                {{ field.errors }}
-                <br>
-            {% endfor %}
-            <button type="submit">Create</button>
+            <p>Are you sure you want to permanently delete this Todo({{todo.pk}})</p>
+            <input type="submit" value="Delete">
         </form>
         <button type="button" onclick="history.back()">Back</button>
     </div>

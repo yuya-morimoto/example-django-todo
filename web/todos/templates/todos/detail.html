@@ -7,14 +7,12 @@
 {% block content %}
     <div>
         <h1>Detail Todo</h1>
-        <p>{{todo.pk}}</p>
-        <p>{{todo.title}}</p>
-        <p>{{todo.description}}</p>
-        <p>{{todo.get_status_display}}</p>
-        <p>{{todo.created_at}} (UTC)</p>
-        <form method="DELETE">
-            <button type="submit">Delete</button>
-        </form>
+        <p>id: {{todo.pk}}</p>
+        <p>title: {{todo.title}}</p>
+        <p>description: {{todo.description}}</p>
+        <p>status: {{todo.get_status_display}}</p>
+        <p>created date: {{todo.created_at|date:'Y/m/d H:i:s A T'}}</p>
+        <a href="{% url 'todos:delete' todo.pk %}">Delete</a> 
         <button type="button" onclick="history.back()">Back</button>
     </div>
 {% endblock %}
