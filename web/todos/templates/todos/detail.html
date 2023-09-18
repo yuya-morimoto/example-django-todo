@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    DetailTodo
+    Todo|Detail
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,8 @@
         <p>description: {{todo.description}}</p>
         <p>status: {{todo.get_status_display}}</p>
         <p>created date: {{todo.created_at|date:'Y/m/d H:i:s A T'}}</p>
-        <a href="{% url 'todos:delete' todo.pk %}">Delete</a> 
+        <a href="{% url 'todos:update' todo.pk %}">Update</a>
+        <a href="{% url 'todos:delete' todo.pk %}">Delete</a>
         <button type="button" onclick="history.back()">Back</button>
     </div>
 {% endblock %}

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Signin
+    Account|SignIn
 {% endblock %}
 
 {% block content %}
     <div>
-        <h1>Signin Page</h1>
+        <h1>SignIn Page</h1>
         <form method="POST">
             {% csrf_token %}
             {{ form.non_field_errors }}
@@ -14,9 +14,9 @@
                 {{ field.label }}
                 {{ field }}
                 {{ field.errors }}
-                <br>
+                <br/>
             {% endfor %}
-            <button type="submit">Signin</button>
+            <button type="submit">SignIn</button>
         </form>
         <button type="button" onclick="history.back()">Back</button>
     </div>

@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Account|SignUp
+    Todo|Update
 {% endblock %}
 
 {% block content %}
     <div>
-        <h1>SignUp Page</h1>
+        <h1>Update Todo</h1>
         <form method="POST">
             {% csrf_token %}
             {{ form.non_field_errors }}
             {% for field in form %}
-                {{field.label }}
+                {{ field.label }}
                 {{ field }}
                 {{ field.errors }}
                 <br/>
             {% endfor %}
-            <button type="submit">SignUp</button>
+            <button type="submit">Update</button>
         </form>
         <button type="button" onclick="history.back()">Back</button>
     </div>

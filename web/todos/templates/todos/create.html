@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    CreateTodo
+    Todo|Create
 {% endblock %}
 
 {% block content %}
@@ -14,7 +14,7 @@
                 {{ field.label }}
                 {{ field }}
                 {{ field.errors }}
-                <br>
+                <br/>
             {% endfor %}
             <button type="submit">Create</button>
         </form>

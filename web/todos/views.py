@@ -3,7 +3,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.db.models import QuerySet
 from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, DetailView, ListView
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from .forms import TodoForm
 from .models import Todo
@@ -36,6 +36,13 @@ class TodoCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form: TodoForm) -> HttpResponse:
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class TodoUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = TodoForm
+    model = Todo
+    template_name = "todos/update.html"
+    success_url = reverse_lazy("todos:index")
 
 
 class TodoDeleteView(LoginRequiredMixin, DeleteView):  # type: ignore [misc]
