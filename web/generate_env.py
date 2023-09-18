@@ -27,6 +27,9 @@ def generate_env() -> None:
             "DB_PASSWORD=password\n",
             "DB_HOST=dj-todo-db\n",
             "DB_PORT=5432",
+            "\n",
+            "# Redis\n",
+            "REDIS_LOCATION=redis://redis:6379",
         ]
         with open(".env", mode="w", newline="\n") as f:
             f.writelines(writelines)
