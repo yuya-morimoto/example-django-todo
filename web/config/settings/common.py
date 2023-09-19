@@ -34,12 +34,14 @@ if READ_DJANGO_ENV_FILE:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 # Default debug-mode is False
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
+INTERNAL_IPS = env.list("INTERNAL_IPS", default=[])
 
 # Application definition
 
