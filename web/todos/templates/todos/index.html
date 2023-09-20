@@ -7,7 +7,8 @@
 {% block content %}
     <div>
         <h1>TodoList Page</h1>
-        <a href="{% url 'todos:create' %}">create</a>
+        <a href="{% url 'accounts:index' %}">Accounts</a>
+        <a href="{% url 'todos:create' %}">Create</a>
         {% for todo in todo_list %}
             <p>{{todo.user.username}}</p>
             <p>{{todo.title}}:{{todo.get_status_display}}</p>
