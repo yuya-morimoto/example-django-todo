@@ -19,6 +19,7 @@ def generate_env() -> None:
         secret_key: str = get_random_secret_key()
         writelines: list[str] = [
             "ALLOWED_HOSTS=*\n",
+            "INTERNAL_IPS=127.0.0.1",
             f"SECRET_KEY={secret_key}\n",
             "\n",
             "# Database\n",
