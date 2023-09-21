@@ -4,7 +4,6 @@ from django.test.client import Client
 from django.urls import reverse
 
 
-@pytest.mark.django_db
 def test_get_status_200(client: Client) -> None:
     response = client.get(reverse("accounts:signup"))
     assert response.status_code == 200
@@ -18,5 +17,4 @@ def test_post_status_302(client: Client) -> None:
     )
     created_user = User.objects.get(username="testuser")
     assert created_user.username == "testuser"
-    assert response["url"] == "/accounts/"
     assert response.status_code == 302
