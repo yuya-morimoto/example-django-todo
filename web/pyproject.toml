@@ -21,6 +21,8 @@ pyproject-flake8 = "^6.0.0.post1"
 isort = "^5.12.0"
 mypy = "^1.5.1"
 django-stubs = "^4.2.4"
+pytest-django = "^4.5.2"
+pytest-cov = "^4.1.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -46,9 +48,16 @@ warn_redundant_casts = true
 [tool.django-stubs]
 django_settings_module = "config.settings.local"
 
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["tests/test_*.py"]
+
 [tool.taskipy.tasks]
 generate_env = "python generate_env.py"
 start_local = "python manage.py runserver 0:8000"
 format = "isort . && black ."
 lint = "pflake8 && mypy ."
-check_all = "task format && task lint"
+check = "task format && task lint"
+test = "pytest"
+test_cov_html = "pytest --cov-report=html"
+test_cov_xml = "pytest --cov-report=xml"
